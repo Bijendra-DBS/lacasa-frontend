@@ -23,6 +23,7 @@ export class HomepageComponent implements OnInit {
   visible = false;
   p: number = 1
 
+  //bar chart options properties
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -45,6 +46,7 @@ export class HomepageComponent implements OnInit {
   public barChartLegend = true;
   public barChartPlugins = [];
 
+  // ploting data on bar chart
   public barChartData: ChartDataSets[] = [
     { data: [], label: 'Headlines' },
   ];
@@ -67,6 +69,7 @@ export class HomepageComponent implements OnInit {
       if(responseObject.status == 200){
         this.listOfData = responseObject.body;
         this._service.message('success', responseMessage);
+        //looping data to fetch date and time from CSV excel.
         this.listOfData.map((item)=>{
         let splitDate = item.Time.split(",");
         let DateFormat = new Date(splitDate[1].trim());
