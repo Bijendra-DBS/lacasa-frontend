@@ -1,0 +1,76 @@
+<section class="hm-wrapper">
+    <div class="container">
+
+      <div class="chart">
+        <p>Bar chart shows the count of Headlines according to months</p>
+        <div class="chart-container" style="height:450px; width:800px" >
+          <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+          </canvas>
+        </div>
+      </div>
+      <button nz-button nzType="primary" (click)="updateData(listOfData)">Update CSV</button>
+
+        <nz-table
+        [nzShowPagination]="false"
+        [nzData]="listOfData"
+      >
+        <thead>
+          <tr>
+
+            <th nzCustomFilter nzColumnKey="Headlines"> Headlines
+             <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="sortValue.length > 0" [nzDropdownMenu]="menu">
+              <i nz-icon nzType="filter" nzTheme="fill"></i>
+            </nz-filter-trigger></th>
+            <th nzColumnKey="Time">Time</th>
+            <th nzColumnKey="Description">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of listOfData | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" class="editable-row">
+
+            <td>
+              <div class="editable-cell" [hidden]="editId === i" (click)="startEdit(i)">
+                  {{ data.Headlines }}
+              </div>
+              <input [hidden]="editId !== i" type="text" nz-input [(ngModel)]="data.Headlines" (blur)="stopEdit()" />
+            </td>
+
+            <td>
+              <div class="editable-cell" [hidden]="editId === i" (click)="startEdit(i)">
+                {{ data.Time }}
+              </div>
+              <input [hidden]="editId !== i" type="text" nz-input [(ngModel)]="data.Time" (blur)="stopEdit()" />
+            </td>
+
+            <td>
+              <div class="editable-cell" [hidden]="editId === i" (click)="startEdit(i)">
+                {{ data.Description }}
+              </div>
+              <input [hidden]="editId !== i" type="text" nz-input [(ngModel)]="data.Description" (blur)="stopEdit()" />
+            </td>
+          </tr>
+
+        </tbody>
+      </nz-table>
+      <pagination-controls class="hm-pagination" (pageChange)="p = $event"></pagination-controls>
+
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="ant-table-filter-dropdown">
+          <div class="sort-box">
+            <input type="text" nz-input placeholder="Sort By Headlines" [(ngModel)]="sortValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="sort()" class="sort-button">
+              Sort
+            </button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+
+    </div>
+</section>

@@ -1,0 +1,42 @@
+// home main container css start
+.hm-wrapper{
+    padding: 5rem ;
+    .chart p{
+      font-style: italic;
+      font-weight: bolder;
+      font-size: 20px;
+    }
+    button{
+      margin-bottom: 1rem;
+    }
+    .editable-cell {
+      position: relative;
+      padding: 5px 12px;
+      cursor: pointer;
+    }
+
+    .editable-row:hover .editable-cell {
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      padding: 4px 11px;
+    }
+    .hm-pagination {
+      text-align: right;
+    }
+  }
+
+// sorting css start
+  .sort-box {
+    padding: 8px;
+    input {
+      width: 188px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    button {
+      width: 90px;
+    }
+    .sort-button {
+      margin-right: 8px;
+    }
+  }
