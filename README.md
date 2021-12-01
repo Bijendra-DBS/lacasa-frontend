@@ -1,4 +1,6 @@
 
+After cloning project please install npm (i.e npm i) then to run project using ng serve command.
+
 Software Engineer Position @ CeADAR
 Technical Challenge  -
 
